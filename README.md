@@ -1,2 +1,2 @@
-# Intermediate-CSS
+# Udemy Web Development Project
 Intermediate CSS
