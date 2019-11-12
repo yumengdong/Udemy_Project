@@ -15,7 +15,7 @@ var commentRoutes = require('./routes/comments'),
     indexRoutes = require('./routes/index');
 
 
-seedDB();
+//seedDB(); // it will remove everything in database
 
 //passport configuration
 app.use(require('express-session')({
