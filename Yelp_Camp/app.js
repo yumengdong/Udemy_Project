@@ -7,7 +7,9 @@ var Comment = require('./models/comment');
 var seedDB = require('./seeds'), 
     LocalStrategy = require('passport-local'),
     User = require('./models/user'),
+    methodOverride = require('method-override'),
     passport = require('passport');
+
 
 //requiring routes
 var commentRoutes = require('./routes/comments'),
@@ -28,6 +30,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(methodOverride("_method"))
 
 
 mongoose.set('useNewUrlParser', true);

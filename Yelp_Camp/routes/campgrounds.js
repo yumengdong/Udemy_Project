@@ -56,6 +56,38 @@ router.get('/:id', isLoggedIn, function(req, res){
     })
 });
 
+// Edit campground route
+router.get('/:id/edit', checkCampgroundOwnership, function(req, res){
+    //is user logged in?
+        Campground.findById(req.params.id, function(err, foundCampground){
+            res.render('campgrounds/edit.ejs', {campground: foundCampground});            
+        });
+});
+//Update campground route
+router.put('/:id', function(req, res){
+    //find and update
+    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
+        if(err){
+            res.redirect('/campgrounds')
+        } else{
+            res.redirect('/campgrounds/' + req.params.id);
+        }
+    })
+    //redirect
+})
+
+router.delete('/:id', function(req, res){
+    Campground.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect('/campgrounds');
+        } else{
+            res.redirect('/campgrounds');
+        }
+    })
+})
+
+
+
 // middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
@@ -65,5 +97,26 @@ function isLoggedIn(req, res, next){
     console.log(req.isAuthenticated());
     res.redirect('/login');
 };
+
+function checkCampgroundOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Campground.findById(req.params.id, function(err, foundCampground){
+            if(err){
+                res.redirect('back')
+            } else{
+                 //does the user own that  
+                if(foundCampground.author.id.equals(req.user._id)){
+                    // res.render('campgrounds/edit.ejs', {campground: foundCampground});            
+                    next();
+                } else {
+                    console.log('you do not have permission');
+                    res.redirect("back");
+                }
+            }
+        });
+    } else{
+        res.send("need to log in");
+    }
+}
 
 module.exports = router;
