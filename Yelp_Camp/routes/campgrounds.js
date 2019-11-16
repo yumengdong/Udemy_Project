@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Campground = require('../models/campground');
+var middleware = require('../middleware');
 
 
 router.get('/', function(req, res){
@@ -17,7 +18,7 @@ router.get('/', function(req, res){
 })
 
 //Submit button in /new direct the page back to here. So use the req.body here
-router.post('/', function(req, res){
+router.post('/', middleware.isLoggedIn, function(req, res){
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
@@ -40,12 +41,12 @@ router.post('/', function(req, res){
     // res.redirect("/campgrounds")
 })
 
-router.get('/new', isLoggedIn, function(req, res){
+router.get('/new', middleware.isLoggedIn, function(req, res){
     res.render('campgrounds/new.ejs')
 })
 
 //add pattern. Show more info about one campground
-router.get('/:id', isLoggedIn, function(req, res){
+router.get('/:id', function(req, res){
     Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground){
         if(err){
             console.log(err);
@@ -57,14 +58,14 @@ router.get('/:id', isLoggedIn, function(req, res){
 });
 
 // Edit campground route
-router.get('/:id/edit', checkCampgroundOwnership, function(req, res){
+router.get('/:id/edit', middleware.checkCampgroundOwnership, function(req, res){
     //is user logged in?
         Campground.findById(req.params.id, function(err, foundCampground){
             res.render('campgrounds/edit.ejs', {campground: foundCampground});            
         });
 });
 //Update campground route
-router.put('/:id', function(req, res){
+router.put('/:id', middleware.checkCampgroundOwnership, function(req, res){
     //find and update
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
         if(err){
@@ -76,7 +77,7 @@ router.put('/:id', function(req, res){
     //redirect
 })
 
-router.delete('/:id', function(req, res){
+router.delete('/:id', middleware.checkCampgroundOwnership, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect('/campgrounds');
@@ -88,35 +89,35 @@ router.delete('/:id', function(req, res){
 
 
 
-// middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        console.log('logged in!');
-        return next();
-    }
-    console.log(req.isAuthenticated());
-    res.redirect('/login');
-};
+// // middleware
+// function isLoggedIn(req, res, next){
+//     if(req.isAuthenticated()){
+//         console.log('logged in!');
+//         return next();
+//     }
+//     console.log(req.isAuthenticated());
+//     res.redirect('/login');
+// };
 
-function checkCampgroundOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Campground.findById(req.params.id, function(err, foundCampground){
-            if(err){
-                res.redirect('back')
-            } else{
-                 //does the user own that  
-                if(foundCampground.author.id.equals(req.user._id)){
-                    // res.render('campgrounds/edit.ejs', {campground: foundCampground});            
-                    next();
-                } else {
-                    console.log('you do not have permission');
-                    res.redirect("back");
-                }
-            }
-        });
-    } else{
-        res.send("need to log in");
-    }
-}
+// function checkCampgroundOwnership(req, res, next){
+//     if(req.isAuthenticated()){
+//         Campground.findById(req.params.id, function(err, foundCampground){
+//             if(err){
+//                 res.redirect('back')
+//             } else{
+//                  //does the user own that  
+//                 if(foundCampground.author.id.equals(req.user._id)){
+//                     // res.render('campgrounds/edit.ejs', {campground: foundCampground});            
+//                     next();
+//                 } else {
+//                     console.log('you do not have permission');
+//                     res.redirect("back");
+//                 }
+//             }
+//         });
+//     } else{
+//         res.send("need to log in");
+//     }
+// }
 
 module.exports = router;

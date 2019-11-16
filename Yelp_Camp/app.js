@@ -8,6 +8,7 @@ var seedDB = require('./seeds'),
     LocalStrategy = require('passport-local'),
     User = require('./models/user'),
     methodOverride = require('method-override'),
+    flash = require('connect-flash'),
     passport = require('passport');
 
 
@@ -19,6 +20,7 @@ var commentRoutes = require('./routes/comments'),
 
 //seedDB(); // it will remove everything in database
 
+app.use(flash());
 //passport configuration
 app.use(require('express-session')({
     secret: 'once again',
@@ -31,7 +33,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(methodOverride("_method"))
+app.use(methodOverride("_method"));
 
 
 mongoose.set('useNewUrlParser', true);
@@ -45,6 +47,8 @@ app.use(express.static(__dirname + '/public'))
 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 })
 

@@ -6,6 +6,7 @@ var passport = require('passport'),
 // root route
 router.get('/', function(req, res){
     res.render('landing.ejs')
+
 })
 
 
@@ -35,7 +36,7 @@ router.post('/register', function(req, res){
 //show login form
 router.get('/login', function(req, res){
     res.render('login.ejs')
-})
+});
 
 //handling login
 router.post('/login', passport.authenticate('local', {
@@ -47,6 +48,7 @@ router.post('/login', passport.authenticate('local', {
 // logout route
 router.get('/logout', function(req, res){
     req.logout();
+    req.flash('success', 'Logged you out!');
     res.redirect('/campgrounds');
 })
 
