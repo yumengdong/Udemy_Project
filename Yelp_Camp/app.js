@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+
 var app = express();
 var bodyParser = require('body-parser');
 var Campground = require('./models/campground');
@@ -33,7 +34,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(methodOverride("_method"));
+app.use(methodOverride("_method")); 
 
 
 mongoose.set('useNewUrlParser', true);
@@ -41,7 +42,32 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect('mongodb://localhost/yelp_camp');
+// console.log(process.env.DATABASEULR);
+// mongoose.connect('mongodb://localhost/yelp_camp');
+var url = process.env.DATABASEULR || "mongodb://localhost/yelp_camp"
+mongoose.connect(url);
+
+// mongoose.connect('mongodb+srv://dongyumeng88:password123321@cluster0-p6ynm.mongodb.net/yelp_camp?retryWrites=true&w=majority', {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useFindAndModify: true,
+//     useUnifiedTopology: true
+// }).then(() => {
+//     console.log('Connected to DB!');
+// }).catch(err => {
+//     console.log('ERROR:', err.message);
+// });
+
+// mongoose.connect('mongodb+srv://dongyumeng88:udemyweb123@cluster0-uhi3c.mongodb.net/test?retryWrites=true', {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useFindAndModify: true,
+//     useUnifiedTopology: true
+// }).then(() => {
+//     console.log('Connected to DB!');
+// }).catch(err => {
+//     console.log('ERROR:', err.message);
+// });
 
 app.use(express.static(__dirname + '/public'))
 
@@ -56,7 +82,7 @@ app.use(function(req, res, next){
 // Campground.create({
 //     name: 'Granite Hill',
 //     image: "https://i.pinimg.com/564x/6e/85/d1/6e85d184bc7e7ba703be148d4052cbf2.jpg",
-//     description: "This is a huge granite hill, no bathrooms. No water. Beautiful granite!"
+//     dehription: "This is a huge granite hill, no bathrooms. No water. Beautiful granite!"
 // }, function(err, camground){
 //     if(err){
 //         console.log(err);
@@ -83,8 +109,19 @@ app.use('/', indexRoutes);
 app.use('/campgrounds',campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 
-app.listen(3000, function(){
-    console.log('The YelpCamp Server Has Started!')
-})
+// app.listen(3000, function(){
+//     console.log('The YelpCamp Server Has Started!')
+// })
 
-app.listen(process.env.PORT, process.env.IP);
+// app.listen(process.env.PORT, process.env.IP,function() {
+//     console.log("Server started, listening on port " + process.env.PORT);
+// });
+
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log("Server Has Started!");
+});
+
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log("The YelpCamp Server Has Started!");
+//  });
