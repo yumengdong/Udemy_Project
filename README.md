@@ -10,3 +10,13 @@ Intermediate CSS
 
 ## Project 3 - Blog webpage
  - Created a blog using responsive width for laptop, tablet and phone reading
+
+## Purrfect Match website
+ - Created a cover page for dating app using bootstrap and font awesome 
+ - Added the top nav bar for user log in and navigation
+	- Added the toggle function for top nav bar so it can collapse for mobile display
+
+## Image gallery
+		- Created image gallery page using bootstrap and font awesome
+		- Applied grid system to create responsive layout
+  - Used Glyphicons to create camera icon on the cover page
