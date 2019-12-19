@@ -42,3 +42,16 @@
 ## Project 10 - Movie Search Application
 - Created a movie searching website using movie data base "omdb" API
 - Created search route and result route for user to search movies using keywords
+
+## Project 11 - Yelp Camp Capstone Project
+- Created landing page using bootstrap
+- Implemented responsive front-end using Bootstrap framework and EJS templates with HTML and CSS
+- Developed the back-end using Express framework and Node.js
+- Implemented user authentication and authorization system with Passport.js middleware, so that edit and delete are based on user permission
+- Added client-oriented flash message for user log in, log out and register error using connect-flash
+- Used Mongo DB to save camp , comments and user information
+- Created new page route to allow user adding new camp information to the Mongo DB
+- Created comment page to allow user add and modify comments for each camp
+- Implemented RESTful routes to add, show, edit, and delete camp information
+- Deployed the application using Heroku and saved the data to MongoDB Atlas
+
