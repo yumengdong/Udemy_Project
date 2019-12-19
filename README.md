@@ -29,3 +29,12 @@
 - Created a cover page for candy shop
 - Added navbar to the page and modified color, style of the nav bar
 - Made both text and picture responsive for mobile display
+
+## Project 8 - Color Game
+- 	Created a color game using JavaScript. The game generates several random colors and let player to guess and select based on RGB value
+- Added "easy" and "hard" button for user to select game difficulty
+
+## Project 9 - To do list
+- Created a To do list webpage using jQuery and JavaScript, which allows users to add, check and delete tasks
+- Applied the hover over effect for the delete icon when users hover the mouse over the task using css
+- Added fade out effect when users delete the tasks
