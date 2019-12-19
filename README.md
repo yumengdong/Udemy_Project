@@ -38,3 +38,7 @@
 - Created a To do list webpage using jQuery and JavaScript, which allows users to add, check and delete tasks
 - Applied the hover over effect for the delete icon when users hover the mouse over the task using css
 - Added fade out effect when users delete the tasks
+
+## Project 10 - Movie Search Application
+- Created a movie searching website using movie data base "omdb" API
+- Created search route and result route for user to search movies using keywords
