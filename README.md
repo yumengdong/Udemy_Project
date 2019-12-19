@@ -11,12 +11,21 @@
 ## Project 3 - Blog webpage
  - Created a blog using responsive width for laptop, tablet and phone reading
 
-## Purrfect Match website
+## Project 4 - Purrfect Match website
  - Created a cover page for dating app using bootstrap and font awesome 
  - Added the top nav bar for user log in and navigation
  - Added the toggle function for top nav bar so it can collapse for mobile display
 
-## Image gallery
+## Project 5 - Image gallery
  - Created image gallery page using bootstrap and font awesome
  - Applied grid system to create responsive layout
  - Used Glyphicons to create camera icon on the cover page
+ 
+## Project 6 - Pattern Project
+ - Created a pattern website using bootstrap 4 and font awesome
+ - Applied grid system to make the image and layout responsive 
+ 
+## Project 7 - Museum of Candy
+- Created a cover page for candy shop
+- Added navbar to the page and modified color, style of the nav bar
+- Made both text and picture responsive for mobile display
