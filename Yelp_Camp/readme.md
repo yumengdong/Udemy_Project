@@ -9,11 +9,13 @@ YelpCamp is a Node.js web application with RESTful routing project
 
 <h2>Built with</h2>
 <h3>Front end</h3>
+
 - Google Fonts
 - Font Awesome
 - Bootstrap 4
 
 <h3>Back end</h3>
+
 - Express
 - MongoDB
 - Mongoose
@@ -22,4 +24,5 @@ YelpCamp is a Node.js web application with RESTful routing project
 - body-parser
 
 <h3>Deployment</h3>
+
 - Heroku
