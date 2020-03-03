@@ -1,0 +1,34 @@
+<% include ../partials/header.ejs %>
+
+<!-- <h4><%= currentUser %></h4> -->
+
+<div class="container"> 
+    <!-- add container to add the space at left and right sides  -->
+    <header class="jumbotron">
+        <div class="container">
+            <h1>This is the campgrounds page</h1>
+            <p>View our campgrounds from all over the world</p>        
+            <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+        </div> 
+    </header>
+
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+        <% campgrounds.forEach(function(campground){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">                    
+                    <img src="<%= campground.image %>" alt="">
+                    <div class="caption">
+                        <h4><%= campground.name %></h4>
+                    </div>
+                    <p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div> 
+    
+
+</div>
+
+<% include ../partials/footer.ejs %>
