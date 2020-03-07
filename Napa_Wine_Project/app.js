@@ -19,7 +19,7 @@ var commentRoutes = require('./routes/comments'),
     indexRoutes = require('./routes/index');
 
 
-//seedDB(); // it will remove everything in database
+// seedDB(); // it will remove everything in database
 
 app.use(flash());
 //passport configuration
