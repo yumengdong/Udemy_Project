@@ -45,7 +45,7 @@ body {
     /* background-image: url(http://i.imgur.com/K3mPv14.jpg)  */
   }
   .slideshow li:nth-child(2) { 
-    background-image: url(hhttps://s3-media0.fl.yelpcdn.com/bphoto/AtQuPVBzXs3m3yw9MGBIkQ/o.jpg);
+    background-image: url(https://s3-media0.fl.yelpcdn.com/bphoto/AtQuPVBzXs3m3yw9MGBIkQ/o.jpg);
     /* background-image: url(http://i.imgur.com/SBEmFpv.jpg); */
     animation-delay: 10s; 
   }
