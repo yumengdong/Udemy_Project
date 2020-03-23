@@ -43,10 +43,10 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
 // console.log(process.env.DATABASEULR);
-mongoose.connect('mongodb://localhost/napa_wine');
+// mongoose.connect('mongodb://localhost/napa_wine'); disable since using MongoDB Atlas
 
-// var url = process.env.DATABASEULR || "mongodb://localhost/yelp_camp"
-// mongoose.connect(url);
+var url = process.env.DATABASEULR || "mongodb://localhost/yelp_camp"
+mongoose.connect(url);
 
 // mongoose.connect('mongodb+srv://dongyumeng88:password123321@cluster0-p6ynm.mongodb.net/yelp_camp?retryWrites=true&w=majority', {
 //     useNewUrlParser: true,
